@@ -89,7 +89,11 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: '用户主页'
+  },
   data() {
+    
     return {
       detail: {},
     };

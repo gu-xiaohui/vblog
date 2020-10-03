@@ -27,7 +27,7 @@
     <div v-if="repos && repos.length > 0">
       <el-card
         shadow="hover"
-        v-for="(item,  index) in repos"
+        v-for="(item, index) in repos"
         :key="'pro' + index"
         style="margin-bottom: 20px"
         v-show="!item.node.hide"
@@ -36,10 +36,9 @@
           <el-row>
             <el-col :span="16">
               <span>
-                <g-link
-                :to="'/repo/detail/' + handleName(item.node.name)"
-                >
-                  <i class="el-icon-service"></i>&nbsp;&nbsp; {{ item.node.name }}
+                <g-link :to="'/repo/detail/' + handleName(item.node.name)">
+                  <i class="el-icon-service"></i>&nbsp;&nbsp;
+                  {{ item.node.name }}
                 </g-link>
               </span>
             </el-col>
@@ -50,7 +49,8 @@
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-back"
-                  >前往GitHub</g-link>
+                  >前往GitHub</g-link
+                >
                 <el-button
                   @click="$share('/open-source/detail/' + item.node.name)"
                   style="padding: 3px 0"
@@ -106,9 +106,11 @@
             </el-col>
             <el-col :span="8" style="text-align: right">
               <el-tag size="small" type="danger" v-if="item.node.license">{{
-                item.node.license.key || 'other'
+                item.node.license.key || "other"
               }}</el-tag>
-              <el-tag size="small" type="success">{{ item.node.language }}</el-tag>
+              <el-tag size="small" type="success">{{
+                item.node.language
+              }}</el-tag>
             </el-col>
           </el-row>
         </div>
@@ -171,40 +173,42 @@ query($page:Int, $name: String){
 </page-query>
 <script>
 export default {
+  metaInfo: {
+    title: "开源项目",
+  },
   data() {
     return {
-      searchKey: ''
-    }
+      searchKey: "",
+    };
   },
   computed: {
     repos() {
       return this.$page.repos.edges;
     },
     page() {
-      return this.$page.repos.pageInfo
-    }
+      return this.$page.repos.pageInfo;
+    },
   },
   methods: {
     search() {
-      const {searchKey, repos} = this;
-      this.$page.repos.edges.forEach(item => {
-        if(item.node.name.indexOf(searchKey) > -1) {
-          this.$set(item.node, 'hide', false)
-          console.log(item.node.hide)
-        }else {
-          this.$set(item.node, 'hide', true)
-          console.log(item.node.hide)
+      const { searchKey, repos } = this;
+      this.$page.repos.edges.forEach((item) => {
+        if (item.node.name.indexOf(searchKey) > -1) {
+          this.$set(item.node, "hide", false);
+          console.log(item.node.hide);
+        } else {
+          this.$set(item.node, "hide", true);
+          console.log(item.node.hide);
         }
-      })
+      });
     },
     onChange(page) {
-      this.$router.push('/repo/' + (page > 1 ? page : ''))
+      this.$router.push("/repo/" + (page > 1 ? page : ""));
     },
     handleName(name) {
-      return encodeURIComponent(name)
-    }
-    
-  }
+      return encodeURIComponent(name);
+    },
+  },
 };
 </script>
 

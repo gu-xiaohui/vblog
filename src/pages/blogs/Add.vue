@@ -53,6 +53,9 @@ export default {
     };
   },
   methods: {
+    metaInfo: {
+      title: "发布博客",
+    },
     goBack() {
       this.$router.go(-1);
     },
@@ -61,16 +64,19 @@ export default {
         if (valid) {
           const { posts } = this;
           console.log(posts);
-          try{
-            const {data} = await this.$axios.post("http://211.159.187.97:1337/posts", posts);
+          try {
+            const { data } = await this.$axios.post(
+              "http://211.159.187.97:1337/posts",
+              posts
+            );
             this.posts = {
-              title: '',
-              content: '',
-              description: ''
-            }
-            this.$message({message: '发布成功', type: 'success'})
-          }catch(e) {
-            alert('发布失败')
+              title: "",
+              content: "",
+              description: "",
+            };
+            this.$message({ message: "发布成功", type: "success" });
+          } catch (e) {
+            alert("发布失败");
           }
         } else {
           console.log("校验失败");

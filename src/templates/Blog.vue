@@ -66,6 +66,9 @@ query($id: ID!){
 <script>
 import MarkdownIt from 'markdown-it'
 export default {
+  metaInfo: {
+    title: '博客详情'
+  },
   data() {
     return {}
   },

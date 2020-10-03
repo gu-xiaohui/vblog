@@ -112,6 +112,9 @@
 import { Base64 } from "js-base64";
 import MarkdownIt from "markdown-it";
 export default {
+  metaInfo: {
+    title: '仓库详情'
+  },
   data() {
     return {
       detail: {},

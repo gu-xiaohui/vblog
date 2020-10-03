@@ -79,6 +79,9 @@ query($page: Int){
 <script>
 import MarkdownIt from 'markdown-it';
 export default {
+  metaInfo: {
+    title: '最新动态'
+  },
   data() {
     return {
 
